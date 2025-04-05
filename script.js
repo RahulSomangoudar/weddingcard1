@@ -6,45 +6,32 @@ function flipPage() {
         pages[currentPage].classList.add("flipped");
         currentPage++;
     } else {
-        // Reset all pages after last page is clicked
         setTimeout(() => {
             pages.forEach(page => page.classList.remove("flipped"));
             currentPage = 0;
-        }, 800); // Small delay to make transition smooth
+        }, 800);
     }
 }
 
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const music = document.getElementById("bg-music");
     const musicControl = document.getElementById("music-control");
 
     music.volume = 0.5;
+    music.muted = true;
+    musicControl.src = "ns.png"; // Muted icon
 
-    // Attempt autoplay with muted set in HTML
-    const autoplay = music.play();
+    // Try to autoplay muted (this works in Chrome)
+    music.play().then(() => {
+        console.log("Muted music autoplayed.");
+    }).catch(err => {
+        console.warn("Muted autoplay failed:", err);
+    });
 
-    // If autoplay works, unmute after a short delay
-    if (autoplay !== undefined) {
-        autoplay.then(() => {
-            setTimeout(() => {
-                music.muted = false; // Unmute after playback starts
-                musicControl.src = "s.png";
-                console.log("Music autoplayed and unmuted.");
-            }, 500);
-        }).catch((err) => {
-            console.log("Autoplay failed:", err);
-        });
-    }
-
-    // Add manual toggle
-    musicControl.addEventListener("click", () => {
-        if (music.paused) {
-            music.play();
-            musicControl.src = "s.png";
-        } else {
-            music.pause();
-            musicControl.src = "ns.png";
-        }
+    // Make icon clickable to toggle mute/unmute
+    musicControl.addEventListener("click", (e) => {
+        e.stopPropagation();
+        music.muted = !music.muted;
+        musicControl.src = music.muted ? "ns.png" : "s.png";
     });
 });

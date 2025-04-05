@@ -129,21 +129,3 @@ h2 {
         display: none; /* Hide on larger screens */
     }
 }
-
-#music-control {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    z-index: 999;
-    opacity: 0.8;
-    pointer-events: auto;
-    transition: transform 0.2s ease;
-}
-
-#music-control:hover {
-    transform: scale(1.1);
-    opacity: 1;
-}

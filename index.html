@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="icon" type="image/png" href="5.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Curtains (Only visible on mobile) -->
+    <img src="curtain.png" class="curtain curtain-left" alt="Curtain Left">
+    <img src="curtain.png" class="curtain curtain-right" alt="Curtain Right">
+
+    <h2> Tap the images </h2>
+
+    <!-- Flipbook Container -->
+    <div class="book" onclick="flipPage()">
+        <div class="page front">
+            <img src="1.png" alt="Wedding Invitation Front">
+        </div>
+        <div class="page middle-1">
+            <img src="2.png" alt="Wedding Invitation Page 2">
+        </div>
+        <div class="page middle-2">
+            <img src="3.png" alt="Wedding Invitation Page 3">
+        </div>
+        <div class="page back" onclick="resetPages(event)">
+            <img src="4.png" alt="Wedding Invitation Back">
+        </div>
+    </div>
+    <audio id="bg-music" autoplay loop muted>
+        <source src="wedding_music.mpeg" type="audio/mpeg">
+    </audio>
+    
+    <img src="s.png" id="music-control" alt="Music Control">
+    
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
